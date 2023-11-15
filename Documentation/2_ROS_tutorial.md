@@ -95,16 +95,24 @@ rosnode info /turtlesim
 rostopic info /turtle1/cmd_vel
 rostopic info /turtle1/pose
 ```
+In the first command we see how the turtlesim node publishes to color_sensor and pose and is subscribed to cmd_vel, so it recieves data from the latter and sends data to the other two.
+
+In the second command we see that the cmd_vel takes in a message of a specific type `geometry_msgs/Twist`, and if we check it out we see the required structure, a linear and angular vector.
+
+In the third command we see that the pose topic spits out a message `turtlesim/Pose`, which we can check out via the code below and we see it is a vector with the position, the angle of the turtle and the velocities.
+
 In order **to see the message structure**, type:
 ```shell
 rosmsg show geometry_msgs/Twist
 rosmsg show turtlesim/Pose 
 ```
+In h
+
 ![](./Images/2_Tutorial/08_turtlesim6.png)
 
 you can also find the message structure in google: http://docs.ros.org/noetic/api/geometry_msgs/html/msg/Twist.html or "geometry_msgs/Twist"
 
-In order **to write a message to a topic** we have different options:
+In order **to write a message to a topic** (this means send an input to the robot) we have different options:
 - we can **publish directly to the topic**: for exemple to publish a Twist type message with a rate of 1Hz to define a circle, type:
 
 ```shell
@@ -322,6 +330,13 @@ Let's program 2 ping-pong nodes according to this graph, with the functionality:
 - if ping-node publish "Ping" then pong-node answers "Pong" in other case answers "Failed!"
 
 ![](./Images/2_Tutorial/16_ping_pong.png)
+
+Before you can run the program, you need to add the ros_basics to the PATH. To do so, run the following commands:
+```shell
+cd rUBot_tutorial_ws/devel/
+source setup.bash
+cd
+```
 
 To verify the ping-pong program, type:
 ```shell
